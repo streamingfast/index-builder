@@ -6,7 +6,7 @@ require (
 	github.com/streamingfast/pbgo v0.0.6-0.20220630154121-2e8bba36234e
 	github.com/streamingfast/shutter v1.5.0
 	go.uber.org/zap v1.21.0
-	google.golang.org/grpc v1.48.0
+	google.golang.org/grpc v1.44.0
 )
 
 require (
@@ -71,7 +71,7 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/streamingfast/bstream v0.0.2-0.20220729150246-c1b9499ea2ff
 	github.com/streamingfast/dgrpc v0.0.0-20220307180102-b2d417ac8da7 // indirect
-	github.com/streamingfast/dmetrics v0.0.0-20220307162521-2389094ab4a1 // indirect
+	github.com/streamingfast/dmetrics v0.0.0-20220307162521-2389094ab4a1
 	github.com/streamingfast/dstore v0.1.1-0.20220607202639-35118aeaf648
 	github.com/streamingfast/firehose v0.1.1-0.20220729153327-86179bcf41f2
 	go.uber.org/atomic v1.9.0 // indirect

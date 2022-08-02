@@ -1,5 +1,7 @@
 package index_builder
 
-import "go.uber.org/zap"
+import (
+	"github.com/streamingfast/logging"
+)
 
-var zlog = zap.NewNop()
+var zlog, tracer = logging.PackageLogger("merger", "github.com/streamingfast/index-builder/app/index-builder")
