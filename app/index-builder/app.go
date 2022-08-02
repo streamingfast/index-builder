@@ -31,7 +31,7 @@ func New(config *Config) *App {
 }
 
 func (a *App) Run() error {
-	blockStore, err := dstore.NewStore(a.config.BlockStorePath, "", "", false)
+	blockStore, err := dstore.NewDBinStore(a.config.BlockStorePath)
 	if err != nil {
 		return err
 	}
