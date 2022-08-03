@@ -1,6 +1,8 @@
 package index_builder
 
 import (
+	"context"
+
 	"github.com/streamingfast/bstream"
 	"github.com/streamingfast/dmetrics"
 	"github.com/streamingfast/dstore"
@@ -11,10 +13,10 @@ import (
 )
 
 type Config struct {
-	BlockHandler   bstream.Handler
-	StartBlock     uint64
-	EndBlock       uint64
-	BlockStorePath string
+	BlockHandler       bstream.Handler
+	StartBlockResolver func(ctx context.Context) (uint64, error)
+	EndBlock           uint64
+	BlockStorePath     string
 }
 
 type App struct {
@@ -36,10 +38,17 @@ func (a *App) Run() error {
 		return err
 	}
 
+	ctx, cancel := context.WithCancel(context.Background())
+	a.OnTerminating(func(error) {
+		cancel()
+	})
+
+	startBlock, err := a.config.StartBlockResolver(ctx)
+
 	indexBuilder := index_builder.NewIndexBuilder(
 		zlog,
 		a.config.BlockHandler,
-		a.config.StartBlock,
+		startBlock,
 		a.config.EndBlock,
 		blockStore,
 	)
