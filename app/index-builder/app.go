@@ -2,6 +2,11 @@ package index_builder
 
 import (
 	"context"
+	"fmt"
+
+	"github.com/streamingfast/dgrpc"
+
+	"go.uber.org/zap"
 
 	"github.com/streamingfast/bstream"
 	"github.com/streamingfast/dmetrics"
@@ -17,6 +22,7 @@ type Config struct {
 	StartBlockResolver func(ctx context.Context) (uint64, error)
 	EndBlock           uint64
 	BlockStorePath     string
+	GRPCListenAddr     string
 }
 
 type App struct {
@@ -53,6 +59,12 @@ func (a *App) Run() error {
 		blockStore,
 	)
 
+	gs, err := dgrpc.NewInternalClient(a.config.GRPCListenAddr)
+	if err != nil {
+		return fmt.Errorf("cannot create readiness probe")
+	}
+	a.readinessProbe = pbhealth.NewHealthClient(gs)
+
 	dmetrics.Register(metrics.MetricSet)
 
 	a.OnTerminating(indexBuilder.Shutdown)
@@ -62,4 +74,22 @@ func (a *App) Run() error {
 
 	zlog.Info("index builder running")
 	return nil
+}
+
+func (a *App) IsReady() bool {
+	if a.readinessProbe == nil {
+		return false
+	}
+
+	resp, err := a.readinessProbe.Check(context.Background(), &pbhealth.HealthCheckRequest{})
+	if err != nil {
+		zlog.Info("index-builder readiness probe error", zap.Error(err))
+		return false
+	}
+
+	if resp.Status == pbhealth.HealthCheckResponse_SERVING {
+		return true
+	}
+
+	return false
 }
