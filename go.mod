@@ -69,11 +69,11 @@ require (
 
 require (
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/streamingfast/bstream v0.0.2-0.20220729150246-c1b9499ea2ff
+	github.com/streamingfast/bstream v0.0.2-0.20220810182344-114d9f8705b2
 	github.com/streamingfast/dgrpc v0.0.0-20220307180102-b2d417ac8da7 // indirect
 	github.com/streamingfast/dmetrics v0.0.0-20220307162521-2389094ab4a1
 	github.com/streamingfast/dstore v0.1.1-0.20220607202639-35118aeaf648
-	github.com/streamingfast/firehose v0.1.1-0.20220729153327-86179bcf41f2
+	github.com/streamingfast/firehose v0.1.1-0.20220810182727-6f3191de9804
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect

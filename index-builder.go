@@ -73,6 +73,7 @@ func (app *IndexBuilder) launch() error {
 		ctx,
 		bstream.HandlerFunc(handlerFunc),
 		req,
+		true,
 		app.logger,
 	)
 
