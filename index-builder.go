@@ -65,6 +65,7 @@ func (app *IndexBuilder) launch() error {
 	handlerFunc := func(block *bstream.Block, obj interface{}) error {
 		metrics.HeadBlockNumber.SetUint64(block.Number)
 		metrics.HeadBlockTimeDrift.SetBlockTime(block.Time())
+		metrics.AppReadiness.SetReady()
 
 		return app.handler.ProcessBlock(block, obj)
 	}

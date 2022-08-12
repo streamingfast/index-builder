@@ -3,6 +3,7 @@ module github.com/streamingfast/index-builder
 go 1.18
 
 require (
+	github.com/streamingfast/logging v0.0.0-20220304214715-bc750a74b424
 	github.com/streamingfast/pbgo v0.0.6-0.20220630154121-2e8bba36234e
 	github.com/streamingfast/shutter v1.5.0
 	go.uber.org/zap v1.21.0
@@ -45,6 +46,7 @@ require (
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/openzipkin/zipkin-go v0.1.6 // indirect
+	github.com/paulbellamy/ratecounter v0.2.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_golang v1.12.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
@@ -53,7 +55,6 @@ require (
 	github.com/streamingfast/atm v0.0.0-20220131151839-18c87005e680 // indirect
 	github.com/streamingfast/dbin v0.0.0-20210809205249-73d5eca35dc5 // indirect
 	github.com/streamingfast/dtracing v0.0.0-20220301163030-15ce3f71dd1c // indirect
-	github.com/streamingfast/logging v0.0.0-20220304214715-bc750a74b424 // indirect
 	github.com/streamingfast/opaque v0.0.0-20210811180740-0c01d37ea308 // indirect
 	github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942 // indirect
 	go.opencensus.io v0.23.0 // indirect
@@ -70,8 +71,8 @@ require (
 require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/streamingfast/bstream v0.0.2-0.20220810182344-114d9f8705b2
-	github.com/streamingfast/dgrpc v0.0.0-20220307180102-b2d417ac8da7 // indirect
-	github.com/streamingfast/dmetrics v0.0.0-20220307162521-2389094ab4a1
+	github.com/streamingfast/dgrpc v0.0.0-20220307180102-b2d417ac8da7
+	github.com/streamingfast/dmetrics v0.0.0-20220811180000-3e513057d17c
 	github.com/streamingfast/dstore v0.1.1-0.20220607202639-35118aeaf648
 	github.com/streamingfast/firehose v0.1.1-0.20220810182727-6f3191de9804
 	go.uber.org/atomic v1.9.0 // indirect
