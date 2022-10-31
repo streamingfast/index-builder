@@ -2,11 +2,14 @@ package index_builder
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
-	"github.com/streamingfast/index-builder/metrics"
+	"github.com/streamingfast/bstream/stream"
 
 	"github.com/streamingfast/bstream"
+	"github.com/streamingfast/index-builder/metrics"
+
 	"github.com/streamingfast/dstore"
 	"github.com/streamingfast/firehose"
 	pbfirehose "github.com/streamingfast/pbgo/sf/firehose/v2"
@@ -40,6 +43,10 @@ func NewIndexBuilder(logger *zap.Logger, handler bstream.Handler, startBlockNum,
 
 func (app *IndexBuilder) Launch() {
 	err := app.launch()
+	if errors.Is(err, stream.ErrStopBlockReached) {
+		app.logger.Info("index builder reached stop block", zap.Uint64("stop_block_num", app.stopBlockNum))
+		err = nil
+	}
 	app.logger.Info("index builder exited", zap.Error(err))
 	app.Shutdown(err)
 }
